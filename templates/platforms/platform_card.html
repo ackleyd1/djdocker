@@ -1,0 +1,16 @@
+{% load static %}
+{% load humanize %}
+
+<div class="card">
+  {% if platform.image %}
+  <img class="card-img-top" src="{{ platform.image.url }}" alt="{{ platform }} image">
+  {% else %}
+  <img class="card-img-top" src="{% static 'core/images/default.jpg' %}" alt="Default image">
+  {% endif %}
+  <div class="card-body">
+    <h4 class="card-title text-center">{{ platform }}</h4>
+  </div>
+  <div class="card-footer text-center">
+    <a href="{{ platform.get_admin_url }}" class="card-link">View platform</a>
+  </div>
+</div>

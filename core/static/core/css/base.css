@@ -1,0 +1,89 @@
+.navbar {
+  background-color: #20bfd2;
+  font-family: 'Maven Pro', sans-serif;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+  font-family: 'Raleway', serif;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  line-height: 60px; /* Vertically center the text there */
+  background-color: #f5f5f5;
+}
+
+.cash {
+  color: green;
+}
+
+hr {
+  border-color: black;
+}
+
+.form-control:focus {
+  box-shadow: none;
+}
+
+.input-group input[type="text"] {
+  flex: 2;
+}
+
+@media only screen and (max-width: 576px) {
+  /* xs */
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+    margin: 4rem;
+  }
+}
+
+@media only screen and (max-width: 768px) and (min-width: 577px) {
+  /* sm */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+  }
+}
+
+@media only screen and (max-width: 992px) and (min-width: 769px) {
+  /* md */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+  }
+}
+
+@media only screen and (max-width: 1200px) and (min-width: 993px) {
+  /* lg */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1rem;
+  }
+}
+
+@media only screen and (min-width: 1201px) {
+  /* xl*/
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1rem;
+  }
+}

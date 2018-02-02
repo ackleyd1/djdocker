@@ -1,0 +1,38 @@
+{% extends "account/base.html" %}
+
+{% load static %}
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'core/css/signin.css' %}">
+{% endblock head %}
+
+{% block content %}
+<div class="container">
+
+  <form class="form-signin login" method="POST" action="{% url 'account_login' %}">
+    {% csrf_token %}
+    <h2 class="form-signin-heading">{% trans "Login" %}</h2>
+    <label for="id_login" class="sr-only">Login:</label>
+    <input type="text" name="login" class="form-control" placeholder="Username" required autofocus id="id_login">
+    <label for="id_password" class="sr-only">Password:</label>
+    <input type="password" name="password" class="form-control" placeholder="Password" required id="id_password">
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" name="remember" value="remember-me"> Remember me
+      </label>
+    </div>
+    {% if redirect_field_value %}
+    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+    {% endif %}
+    <button class="primaryAction btn btn-lg btn-info btn-block" type="submit">{% trans "Login" %}</button>
+    <p>{% blocktrans %}If you have not created an account yet, then please
+    <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+    <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+  </form>
+
+</div>
+{% endblock content %}

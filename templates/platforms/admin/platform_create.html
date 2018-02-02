@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head_title %}| Create Platform{% endblock head_title %}
+
+{% block content %}
+{% include 'navbar.html' %}
+<div class="container">
+
+  <form class="mt-4" action="{% url 'platforms:admin:create' %}" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="id_name">Name:</label>
+      <input class="form-control" type="text" name="name" maxlength="128" required id="id_name" />
+    </div>
+    <div class="form-group">
+      <label for="id_slug">Slug:</label>
+      <input class="form-control" type="text" name="slug" maxlength="128" id="id_slug" />
+    </div>
+    <button class="btn btn-info" type="submit">Create</button>
+  </form>
+
+</div>
+{% include 'footer.html' %}
+{% endblock content %}

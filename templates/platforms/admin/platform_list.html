@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head_title %}| Home{% endblock head_title %}
+
+{% block content %}
+{% include "navbar.html" %}
+
+<div class="container">
+  <div class="grid mt-4">
+    {% for platform in platforms %}
+      {% include 'platforms/platform_card.html' with platform=platform %}
+    {% endfor %}
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title text-center">Add a new platform</h4>
+      </div>
+      <div class="card-footer text-center">
+        <a href="{% url 'platforms:admin:create' %}" class="card-link">Create</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include "footer.html" %}
+{% endblock content %}

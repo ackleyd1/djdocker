@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head_title %}| Home{% endblock head_title %}
+
+{% block content %}
+
+{% include "navbar.html" %}
+
+<div class="container pb-4">
+
+  <div class="jumbotron mt-3 text-center">
+    <h1 class="display-3">Take Back Gaming</h1>
+    <p class="lead">Search for video games</p>
+
+    <form class="justify-content-center mx-5">
+      <div class="input-group">
+        {% if request.GET.q %}
+        <input type="text" class="form-control" name="q" value="{{ request.GET.q }}">
+        {% else %}
+        <input type="text" class="form-control" name="q" placeholder="Search for games...">
+        {% endif %}
+
+        <select class="custom-select" name="platform">
+          {% if not request.GET.platform %}
+          <option value="all" selected>All</option>
+          {% else %}
+          <option value="all">All</option>
+          {% endif %}
+          {% for platform in platforms %}
+          <option value="{{ platform.slug }}">{{ platform }}</option>
+          {% endfor %}
+        </select>
+        <div class="input-group-append">
+          <button type="submit" class="btn btn-info"><i class="fa fa-search" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </form>
+
+  </div>
+
+{% if request.GET.q %}
+  {% if games.count == 0 %}
+  <div class="row">
+    <p class="display-4 text-muted m-auto">No games found for '{{ request.GET.q }}'</p>
+  </div>
+  {% else %}
+  <div class="grid">
+    {% for game in games %}
+      {% include "games/game_card.html" with game=game admin=False %}
+    {% endfor %}
+  </div>
+  {% endif %}
+{% endif %}
+
+</div>
+
+{% include "footer.html" %}
+
+{% endblock content %}
