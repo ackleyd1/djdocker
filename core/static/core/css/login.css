@@ -1,0 +1,14 @@
+#login {
+  margin: 0 auto;
+}
+
+#login .alert ul {
+  margin-bottom: 0;
+}
+
+@media only screen and (min-width: 993px) {
+  /* lg */
+  #login {
+    max-width: 50%;
+  }
+}

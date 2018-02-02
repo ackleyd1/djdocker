@@ -50,6 +50,8 @@ DJANGO_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
+    'rest_framework',
+    'crispy_forms',
     'debug_toolbar',
     'allauth',
     'allauth.account',
@@ -127,6 +129,10 @@ STATIC_ROOT = ROOT_DIR.child('static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = ROOT_DIR.child('media')
 
+# crispy forms
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 # Allauth
 
 LOGIN_REDIRECT_URL = "/"
@@ -137,8 +143,10 @@ ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_PRESERVE_USERNAME_CASING = False
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 7
 ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_USERNAME_MIN_LENGTH = 6
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_FORMS = {'login': 'core.forms.CrispyLoginForm', 'signup': 'CrispySignupForm'}
 
 DEFAULT_FROM_EMAIL = "ravedave@gameboyz.co"
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -153,6 +161,14 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
+
+# rest framework
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAdminUser',
+    ],
+}
 
 # Debug toolbar
 

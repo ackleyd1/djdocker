@@ -5,9 +5,14 @@
 {% block head_title %}| {{ platform }}{% endblock head_title %}
 
 {% block content %}
-{% include "navbar.html" %}
-<div class="container">
-
-</div>
-{% include "footer.html" %}
+<main class="container">
+  <h1>{{ platform.name }}</h1>
+  <p>{{ platform.slug }}</p>
+  {% if platform.image %}
+  <img src="{{ platform.image.url }}" class="img-fluid" alt="{{ platform.name }} picture">
+  {% endif %}
+  <p>
+    <a href="{% url 'platforms:admin:update' platform_slug=platform.slug %}">Update</a>
+  </p>
+</main>
 {% endblock content %}

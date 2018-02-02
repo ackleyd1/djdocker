@@ -1,6 +1,15 @@
+main {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
 .navbar {
   background-color: #20bfd2;
   font-family: 'Maven Pro', sans-serif;
+
+  /* materialize css navbar shadowing */
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
 }
 
 /* Sticky footer styles
@@ -34,12 +43,18 @@ hr {
   border-color: black;
 }
 
-.form-control:focus {
-  box-shadow: none;
+.btn-primary, .btn-primary:visited {
+    background: #20bfd2 !important;
+    border-color: #20bfd2 !important;
 }
 
-.input-group input[type="text"] {
-  flex: 2;
+.btn-primary:hover, .btn-primary:active {
+  background: #008C9F !important;
+  border-color: #008C9F !important;
+}
+
+.btn-primary:focus, .btn-primary:active {
+    box-shadow: none !important;
 }
 
 @media only screen and (max-width: 576px) {
