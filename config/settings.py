@@ -16,7 +16,7 @@ ROOT_DIR = Path(__file__).ancestor(2)
 
 SECRET_KEY = get_env_variable('SECRET_KEY')
 DEBUG = True
-ALLOWED_HOSTS = ['web']
+ALLOWED_HOSTS = ['0.0.0.0']
 WSGI_APPLICATION = 'config.wsgi.application'
 ROOT_URLCONF = 'core.urls'
 
@@ -98,7 +98,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
         'USER': 'postgres',
-        'HOST': 'db',
+        'PASSWORD': 'password',
+        'HOST': os.environ.get("SQL_HOST", "localhost"),
         'PORT': 5432,
     }
 }

@@ -1,31 +1,22 @@
-version: '3'
-
 services:
   db:
     image: postgres
     volumes:
       - pgdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=postgres
   web:
     build: .
-    command: bash -c "python manage.py collectstatic --noinput && python manage.py makemigrations && python manage.py migrate && gunicorn config.wsgi -b 0.0.0.0:80"
+    command: bash -c "python manage.py collectstatic --noinput && python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/djdocker
-    expose:
-      - "80"
+    ports:
+      - "8000:8000"
     depends_on:
       - db
     env_file:
       - .env
-  nginx:
-    image: nginx:latest
-    volumes:
-      - ./djdocker.service:/etc/nginx/conf.d/djdocker.service
-      - ./static:/static
-      - ./media:/media
-    ports:
-      - "80:80"
-    command: /bin/bash -c "envsubst < /etc/nginx/conf.d/djdocker.service > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
-    depends_on:
-      - web
 volumes:
   pgdata:
